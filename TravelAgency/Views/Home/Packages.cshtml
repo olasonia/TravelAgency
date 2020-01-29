@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Packages";
+}
+
+<img id="logo" src="../Images/TravelAgencyLogo.jpg" alt="Logo" width="15%" align="center" float="right">
+<h2 align ="center">Packages</h2>
+
+<p align="center">
+    @Html.ActionLink("Homepage", "Index") &nbsp
+    @Html.ActionLink("Packages", "Packages") &nbsp
+    @Html.ActionLink("Forum", "Forum") &nbsp
+    @Html.ActionLink("Testimonies", "Testimonies") &nbsp
+    @Html.ActionLink("Gallery", "Gallery") &nbsp
+    @Html.ActionLink("FAQ", "FAQ") &nbsp
+    @Html.ActionLink("Contact", "Contact") &nbsp
+    @Html.ActionLink("Basket", "Basket", "Buy") &nbsp
+</p>
+
+
+
+<h1>Where would you like to go?</h1>
+    <div>
+        I want to go to                             :
+        <select id="photoChoice" name="photoChoice">
+            <option id="1" name ="country" value="1">China</option>
+            <option id="2" name ="country" value="2">Turkey</option>
+            <option id="3" name ="country" value="3">Argentina</option>
+            <option id="4" name ="country" value="4">Nepal</option>
+            <option id="5" name ="country" value="5">Australia</option>
+            <option id="6" name ="country" value="6">Vietnam</option>
+        </select>
+        &nbsp;
+        <input id ="submitCountry" type="submit" value="Submit" />
+    </div>
+    <div style="padding:10px;">
+
+    </div>
+
+
+<<script src="~/Scripts/jquery-3.4.1.js"></script>
+ <script type="text/javascript">
+     $("#submitCountry").click(function () {
+         alert("bb");
+         var url = "../../Buy/AddBasket";
+         var content = $("#photoChoice").val();
+         alert(content);
+         $.post(url, { id: content }, function () { alert("sent")});
+         alert("done");
+
+     });
+ </script>
+
+<h2>Trips</h2>
+
+@foreach (TravelAgency.Models.Voyage item in ViewBag.voyages)
+{
+    <p>@item.Id @item.Destination @item.Days days</p>
+}
